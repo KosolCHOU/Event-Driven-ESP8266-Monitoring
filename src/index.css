@@ -12,27 +12,36 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: #cbd5e1; }
 
-/* Range input thumb */
-input[type='range'] { cursor: pointer; }
-input[type='range']::-webkit-slider-thumb { accent-color: #10b981; }
-
-/* Live pulse */
+/* ── Live dot pulse ─────────────────────────────────────────────────────── */
 @keyframes pulse-dot {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.45; transform: scale(0.85); }
 }
-.pulse-dot { animation: pulse-dot 1.5s ease-in-out infinite; }
+.pulse-dot { animation: pulse-dot 1.4s ease-in-out infinite; }
 
-/* SoD flash keyframe */
-@keyframes glow-green {
-  0%   { box-shadow: 0 0 0 0 rgba(16,185,129,0.55); background-color: rgba(16,185,129,0.08); }
-  60%  { box-shadow: 0 0 0 8px rgba(16,185,129,0);  background-color: rgba(16,185,129,0.03); }
-  100% { box-shadow: 0 0 0 0 rgba(16,185,129,0);    background-color: transparent; }
+/* ── TX event: 200ms scale+glow pulse ───────────────────────────────────── */
+@keyframes tx-pop {
+  0%   { transform: scale(1);    box-shadow: 0 0 0   0   rgba(16,185,129,0); }
+  35%  { transform: scale(1.05); box-shadow: 0 0 14px 4px rgba(16,185,129,0.42); }
+  100% { transform: scale(1);    box-shadow: 0 0 0   0   rgba(16,185,129,0); }
 }
-.flash-sod { animation: glow-green 0.8s ease-out forwards; }
+.tx-pop { animation: tx-pop 0.2s ease-out forwards; }
+
+/* ── SoD counter number flash ───────────────────────────────────────────── */
+@keyframes sod-flash {
+  0%   { color: #10b981; background: rgba(16,185,129,0.15); border-radius: 4px; }
+  100% { color: #10b981; background: transparent; }
+}
+.sod-flash { animation: sod-flash 0.35s ease-out forwards; }
+
+/* ── Reference (baseline) counter flash — slate tint ───────────────────── */
+@keyframes ref-flash {
+  0%   { color: #475569; background: rgba(100,116,139,0.14); border-radius: 4px; }
+  100% { color: inherit; background: transparent; }
+}
+.ref-flash { animation: ref-flash 0.35s ease-out forwards; }
