@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #f8fafc;
+  color: #334155;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #cbd5e1; }
+
+/* Range input thumb */
+input[type='range'] { cursor: pointer; }
+input[type='range']::-webkit-slider-thumb { accent-color: #10b981; }
+
+/* Live pulse */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.pulse-dot { animation: pulse-dot 1.5s ease-in-out infinite; }
+
+/* SoD flash keyframe */
+@keyframes glow-green {
+  0%   { box-shadow: 0 0 0 0 rgba(16,185,129,0.55); background-color: rgba(16,185,129,0.08); }
+  60%  { box-shadow: 0 0 0 8px rgba(16,185,129,0);  background-color: rgba(16,185,129,0.03); }
+  100% { box-shadow: 0 0 0 0 rgba(16,185,129,0);    background-color: transparent; }
+}
+.flash-sod { animation: glow-green 0.8s ease-out forwards; }
